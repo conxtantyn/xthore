@@ -1,0 +1,36 @@
+HELP.md
+EXERCISE.md
+.env
+.DS_Store
+target/
+*.releaseBackup
+local.properties
+release.properties
+pom.xml.releaseBackup
+pom.xml.tag
+pom.xml.next
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+docker/postgres_data/
+docker/postgres_data_user/
+
+### VS Code ###
+.vscode/
+
+### Kotlin ###
+.kotlin

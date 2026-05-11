@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.5.10</version>
+		<relativePath/>
+	</parent>
+	<groupId>com.xthore.app</groupId>
+	<artifactId>xthore</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>xthore</name>
+
+	<modules>
+		<module>core/common</module>
+		<module>core/remote</module>
+		<module>core/rest</module>
+		<module>feature/catalog/domain</module>
+		<module>feature/catalog/data</module>
+		<module>feature/catalog/persistence</module>
+		<module>feature/catalog/rest</module>
+		<module>feature/order/domain</module>
+		<module>feature/order/data</module>
+		<module>feature/order/persistence</module>
+		<module>feature/order/remote</module>
+		<module>feature/order/rest</module>
+		<module>api</module>
+	</modules>
+
+	<properties>
+		<java.version>21</java.version>
+		<spring-cloud.version>2025.0.0</spring-cloud.version>
+		<spring-security-problem.version>0.29.1</spring-security-problem.version>
+		<spring-security-problem-jackson.version>0.27.1</spring-security-problem-jackson.version>
+		<spring-doc.version>2.8.14</spring-doc.version>
+		<jib.version>3.4.0</jib.version>
+		<liquibase.version>4.25.1</liquibase.version>
+		<postgresql.version>42.7.8</postgresql.version>
+		<postgresql-r2dbc.version>1.1.1.RELEASE</postgresql-r2dbc.version>
+		<coroutines.version>1.10.2</coroutines.version>
+		<assertj.version>3.26.3</assertj.version>
+		<testcontainers.version>1.20.4</testcontainers.version>
+		<apache-commons.version>3.19.0</apache-commons.version>
+		<libphone.version>9.0.2</libphone.version>
+		<sendgrid.version>4.10.3</sendgrid.version>
+		<twilio.version>11.0.3</twilio.version>
+		<dotenv.version>3.2.0</dotenv.version>
+		<slf4j.version>2.0.16</slf4j.version>
+		<spring-kafka.version>3.2.0</spring-kafka.version>
+		<reactor-kafka.version>1.3.23</reactor-kafka.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>io.projectreactor</groupId>
+			<artifactId>reactor-core</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>com.google.cloud.tools</groupId>
+					<artifactId>jib-maven-plugin</artifactId>
+					<version>${jib.version}</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<repositories>
+		<repository>
+			<id>spring-snapshots</id>
+			<name>Spring Snapshots</name>
+			<url>https://repo.spring.io/snapshot</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/milestone</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+</project>

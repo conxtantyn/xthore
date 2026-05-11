@@ -1,0 +1,34 @@
+eureka:
+  instance:
+    instanceId: ${spring.application.name}:${random.value}
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 10
+  client:
+    enabled: true
+    fetch-registry: true
+    register-with-eureka: true
+    registry-fetch-interval-seconds: 10
+
+spring:
+  threads:
+    virtual:
+      enabled: true
+  application:
+    name: api
+  cloud:
+    gateway:
+      server:
+        webflux:
+          discovery:
+            locator:
+              enabled: true
+              lower-case-service-id: true
+          httpclient:
+            pool:
+              max-connections: 1000
+  profiles:
+    active: dev
+
+springdoc:
+  swagger-ui:
+    enabled: false

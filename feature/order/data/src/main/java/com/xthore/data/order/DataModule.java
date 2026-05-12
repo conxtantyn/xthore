@@ -10,5 +10,4 @@ import org.springframework.context.annotation.Configuration;
         "com.xthore.data.order.interactor",
     }
 )
-public class DataModule {
-}
+public class DataModule {}

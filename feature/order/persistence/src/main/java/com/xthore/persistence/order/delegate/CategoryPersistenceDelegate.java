@@ -3,6 +3,8 @@ package com.xthore.persistence.order.delegate;
 import com.xthore.data.order.persistence.CategoryPersistence;
 import com.xthore.domain.order.model.Category;
 import com.xthore.persistence.order.datasource.CategoryDatasource;
+import com.xthore.persistence.order.mapper.CategoryMapper;
+
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 
@@ -16,11 +18,6 @@ public class CategoryPersistenceDelegate implements CategoryPersistence {
 
     @Override
     public Flux<Category> findAll() {
-        return datasource.findAll()
-            .map(entity -> new Category(
-                entity.name(),
-                entity.description(),
-                entity.createdAt()
-            ));
+        return datasource.findAll().map(CategoryMapper::mapToDomain);
     }
 }

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <changeSet id="00000000000001-1" author="kevin-constantine">
+        <createTable tableName="xt_offering">
+            <column name="_id" type="bigserial">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="description" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="discount" type="decimal(21,2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="bigint" >
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <loadData
+            file="liquibase/data/offering.csv"
+            separator=","
+            tableName="xt_offering"
+            usePreparedStatements="true">
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

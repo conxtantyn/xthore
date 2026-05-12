@@ -5,5 +5,4 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ComponentScan("com.xthore.domain.order.usecase")
-public class OrderModule {
-}
+public class OrderModule {}

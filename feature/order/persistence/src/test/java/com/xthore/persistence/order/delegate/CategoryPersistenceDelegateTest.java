@@ -1,6 +1,5 @@
 package com.xthore.persistence.order.delegate;
 
-import com.xthore.domain.order.model.Category;
 import com.xthore.persistence.order.PersistenceModule;
 import com.xthore.persistence.order.datasource.ArticleDatasource;
 import com.xthore.persistence.order.datasource.CategoryDatasource;
@@ -17,8 +16,6 @@ import reactor.test.StepVerifier;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-@ActiveProfiles("test")
-@Import(PersistenceModule.class)
 public class CategoryPersistenceDelegateTest {
 
     @Autowired
@@ -39,8 +36,16 @@ public class CategoryPersistenceDelegateTest {
         orderDatasource.deleteAll().block();
         categoryDatasource.deleteAll().block();
         
-        categoryDatasource.save(new CategoryEntity("CAT1", "Description 1", System.currentTimeMillis())).block();
-        categoryDatasource.save(new CategoryEntity("CAT2", "Description 2", System.currentTimeMillis())).block();
+        categoryDatasource.save(new CategoryEntity(
+                "CAT1",
+                "Description 1",
+                System.currentTimeMillis())
+        ).block();
+        categoryDatasource.save(new CategoryEntity(
+                "CAT2",
+                "Description 2",
+                System.currentTimeMillis())
+        ).block();
     }
 
     @Test

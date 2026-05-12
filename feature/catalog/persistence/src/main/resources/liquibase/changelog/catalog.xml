@@ -10,5 +10,7 @@
     <property name="uuidType" value="varchar(36)" dbms="h2, mysql, postgresql"/>
     <property name="datetimeType" value="datetime" dbms="h2, mysql, postgresql"/>
 
-    <includeAll path="liquibase/changelog/00000000000001" />
+    <include file="00000000000001/create_offering.xml" relativeToChangelogFile="true"/>
+    <include file="00000000000001/create_product.xml" relativeToChangelogFile="true"/>
+    <include file="00000000000001/create_product_offering.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

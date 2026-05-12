@@ -12,5 +12,4 @@ import org.springframework.data.r2dbc.repository.config.EnableR2dbcRepositories;
 @Configuration
 @ComponentScan("com.xthore.persistence.order.delegate")
 @EnableR2dbcRepositories(basePackages = "com.xthore.persistence.order.datasource")
-public class PersistenceModule {
-}
+public class PersistenceModule {}

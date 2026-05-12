@@ -5,12 +5,13 @@ import com.xthore.data.order.persistence.OrderPersistence;
 import com.xthore.domain.order.model.*;
 import com.xthore.persistence.order.datasource.*;
 import com.xthore.persistence.order.entity.*;
+import com.xthore.persistence.order.mapper.ArticleMapper;
+import com.xthore.persistence.order.mapper.OrderMapper;
+
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
 public class OrderPersistenceDelegate implements OrderPersistence {
@@ -30,24 +31,11 @@ public class OrderPersistenceDelegate implements OrderPersistence {
 
     @Override
     public Mono<Order> save(Order order) {
-        OrderEntity entity = new OrderEntity(
-            order.id(),
-            order.state().name(),
-            order.category(),
-            UUID.fromString(order.customer()),
-            order.site(),
-            order.createdAt(),
-            order.updatedAt()
-        );
+        OrderEntity entity = OrderMapper.mapFromDomain(order);
         return orderDatasource.save(entity)
             .flatMap(savedOrder -> {
                 Flux<ArticleEntity> articles = Flux.fromIterable(order.articles())
-                    .map(item -> new ArticleEntity(
-                        UUID.randomUUID(),
-                        savedOrder.uuid(),
-                        item.offering(),
-                        item.quantity()
-                    ));
+                    .map(item -> ArticleMapper.mapToDomain(savedOrder.uuid(), item));
                 return articleDatasource.saveAll(articles).collectList()
                     .thenReturn(savedOrder);
             }).flatMap(savedOrder -> findById(savedOrder.uuid()));
@@ -60,7 +48,8 @@ public class OrderPersistenceDelegate implements OrderPersistence {
                 articleDatasource.findByOrderUuid(orderEntity.uuid()).collectList()
                     .flatMap(articles -> 
                         customerDatasource.findById(orderEntity.customer())
-                            .map(customer -> mapToDomain(orderEntity, articles, customer))
+                            .map(customer -> OrderMapper
+                                    .mapToDomain(orderEntity, articles, customer))
                     )
             );
     }
@@ -82,26 +71,5 @@ public class OrderPersistenceDelegate implements OrderPersistence {
         return orderDatasource.findAll()
             .filter(o -> category == null || o.category().equals(category))
             .count();
-    }
-
-    private Order mapToDomain(OrderEntity orderEntity, List<ArticleEntity> articles, CustomerEntity customer) {
-        List<Article> items = articles.stream()
-            .map(a -> new Article(a.offering(), a.quantity()))
-            .collect(Collectors.toList());
-        PaymentMethod paymentMethod = new PaymentMethod(
-            PaymentMethod.Type.valueOf(customer.paymentMethod()),
-            customer.iban()
-        );
-        return new Order(
-            orderEntity.uuid(),
-            Order.State.valueOf(orderEntity.state()),
-            orderEntity.category(),
-            orderEntity.customer().toString(),
-            orderEntity.siteId(),
-            items,
-            paymentMethod,
-            orderEntity.createdAt(),
-            orderEntity.updatedAt()
-        );
     }
 }

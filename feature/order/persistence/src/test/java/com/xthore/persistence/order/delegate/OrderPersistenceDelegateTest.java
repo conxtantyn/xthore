@@ -9,6 +9,7 @@ import com.xthore.persistence.order.datasource.ArticleDatasource;
 import com.xthore.persistence.order.datasource.CategoryDatasource;
 import com.xthore.persistence.order.datasource.CustomerDatasource;
 import com.xthore.persistence.order.datasource.OrderDatasource;
+import com.xthore.persistence.order.entity.CategoryEntity;
 import com.xthore.persistence.order.entity.CustomerEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,8 +25,6 @@ import java.util.UUID;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-@ActiveProfiles("test")
-@Import(PersistenceModule.class)
 public class OrderPersistenceDelegateTest {
 
     @Autowired
@@ -52,9 +51,16 @@ public class OrderPersistenceDelegateTest {
         customerDatasource.deleteAll().block();
         categoryDatasource.deleteAll().block();
 
-        categoryDatasource.save(new com.xthore.persistence.order.entity.CategoryEntity("B2B", "B2B description", System.currentTimeMillis())).block();
-        categoryDatasource.save(new com.xthore.persistence.order.entity.CategoryEntity("B2C", "B2C description", System.currentTimeMillis())).block();
-
+        categoryDatasource.save(new CategoryEntity(
+                "B2B",
+                "B2B description",
+                System.currentTimeMillis())
+        ).block();
+        categoryDatasource.save(new CategoryEntity(
+                "B2C",
+                "B2C description",
+                System.currentTimeMillis())
+        ).block();
         CustomerEntity customer = new CustomerEntity(
             customerId,
             "DIRECT_DEBIT",

@@ -9,9 +9,9 @@
     <property name="uuidType" value="varchar(36)" dbms="h2, mysql, postgresql"/>
     <property name="datetimeType" value="datetime" dbms="h2, mysql, postgresql"/>
 
-    <include file="00000000000001/01_create_customer.xml" relativeToChangelogFile="true"/>
-    <include file="00000000000001/02_create_category.xml" relativeToChangelogFile="true"/>
-    <include file="00000000000001/03_create_order.xml" relativeToChangelogFile="true"/>
-    <include file="00000000000001/04_create_article.xml" relativeToChangelogFile="true"/>
-    <include file="00000000000001/05_create_session.xml" relativeToChangelogFile="true"/>
+    <include file="00000000000001/create_customer.xml" relativeToChangelogFile="true"/>
+    <include file="00000000000001/create_category.xml" relativeToChangelogFile="true"/>
+    <include file="00000000000001/create_order.xml" relativeToChangelogFile="true"/>
+    <include file="00000000000001/create_article.xml" relativeToChangelogFile="true"/>
+    <include file="00000000000001/create_session.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

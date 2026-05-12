@@ -8,11 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.zalando.problem.spring.webflux.advice.ProblemHandling;
-import org.zalando.problem.spring.webflux.advice.security.SecurityAdviceTrait;
 import reactor.core.publisher.Mono;
 
 @ControllerAdvice
-public class RequestExceptionHandler implements ProblemHandling, SecurityAdviceTrait {
+public class RequestExceptionHandler implements ProblemHandling {
     @ExceptionHandler(BusinessException.class)
     public Mono<ResponseEntity<Problem>> handleBusinessException(BusinessException error) {
         HttpStatus status;

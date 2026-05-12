@@ -10,9 +10,9 @@ import java.util.Collections;
 
 @SpringBootApplication
 @Import({
-    CatalogModule.class,
     PersistenceModule.class,
-    DataModule.class
+    DataModule.class,
+    CatalogModule.class,
 })
 public class CatalogApplication {
     private static final String SPRING_PROFILE_DEVELOPMENT = "dev";

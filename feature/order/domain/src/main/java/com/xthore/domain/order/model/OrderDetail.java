@@ -11,5 +11,4 @@ public record OrderDetail(
     String site,
     List<Article> articles,
     PaymentMethod paymentMethod
-) {
-}
+) {}

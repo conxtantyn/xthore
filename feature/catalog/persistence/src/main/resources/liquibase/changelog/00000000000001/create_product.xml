@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="00000000000001-1" author="antigravity">
+        <createTable tableName="product_offering">
+            <column name="id" type="varchar(255)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="decimal(21,2)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="00000000000001-2" author="antigravity">
+        <insert tableName="product_offering">
+            <column name="id" value="po-1"/>
+            <column name="name" value="Product 1"/>
+            <column name="price" valueNumeric="10.00"/>
+        </insert>
+        <insert tableName="product_offering">
+            <column name="id" value="po-2"/>
+            <column name="name" value="Product 2"/>
+            <column name="price" valueNumeric="20.00"/>
+        </insert>
+        <insert tableName="product_offering">
+            <column name="id" value="po-3"/>
+            <column name="name" value="Product 3"/>
+            <column name="price" valueNumeric="30.00"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

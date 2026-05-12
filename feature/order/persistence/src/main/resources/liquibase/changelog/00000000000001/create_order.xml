@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <changeSet id="00000000000001-1" author="kevin-constantine">
+        <createTable tableName="xt_order">
+            <column name="_id" type="bigserial">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="uuid" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="state" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="category" type="varchar(50)">
+                <constraints nullable="false"
+                    foreignKeyName="fk_category_order"
+                    referencedTableName="xt_category"
+                    referencedColumnNames="name"/>
+            </column>
+            <column name="customer" type="uuid">
+                <constraints nullable="false"
+                    foreignKeyName="fk_customer_order"
+                    referencedTableName="xt_customer"
+                    referencedColumnNames="uuid"/>
+            </column>
+            <column name="site_id" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="bigint" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="bigint" >
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

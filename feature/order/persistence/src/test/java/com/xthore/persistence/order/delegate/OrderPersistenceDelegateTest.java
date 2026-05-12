@@ -6,6 +6,7 @@ import com.xthore.domain.order.model.Order;
 import com.xthore.domain.order.model.PaymentMethod;
 import com.xthore.persistence.order.PersistenceModule;
 import com.xthore.persistence.order.datasource.ArticleDatasource;
+import com.xthore.persistence.order.datasource.CategoryDatasource;
 import com.xthore.persistence.order.datasource.CustomerDatasource;
 import com.xthore.persistence.order.datasource.OrderDatasource;
 import com.xthore.persistence.order.entity.CustomerEntity;
@@ -31,6 +32,9 @@ public class OrderPersistenceDelegateTest {
     private OrderPersistenceDelegate delegate;
 
     @Autowired
+    private CategoryDatasource categoryDatasource;
+
+    @Autowired
     private CustomerDatasource customerDatasource;
 
     @Autowired
@@ -46,6 +50,11 @@ public class OrderPersistenceDelegateTest {
         articleDatasource.deleteAll().block();
         orderDatasource.deleteAll().block();
         customerDatasource.deleteAll().block();
+        categoryDatasource.deleteAll().block();
+
+        categoryDatasource.save(new com.xthore.persistence.order.entity.CategoryEntity("B2B", "B2B description", System.currentTimeMillis())).block();
+        categoryDatasource.save(new com.xthore.persistence.order.entity.CategoryEntity("B2C", "B2C description", System.currentTimeMillis())).block();
+
         CustomerEntity customer = new CustomerEntity(
             customerId,
             "DIRECT_DEBIT",

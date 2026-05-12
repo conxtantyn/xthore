@@ -11,7 +11,7 @@ import java.util.UUID;
 public class ArticleEntity implements Persistable<UUID> {
     @Id
     private final UUID uuid;
-    @Column("\"order\"")
+    @Column("order_uuid")
     private final UUID orderUuid;
     private final String offering;
     private final Integer quantity;

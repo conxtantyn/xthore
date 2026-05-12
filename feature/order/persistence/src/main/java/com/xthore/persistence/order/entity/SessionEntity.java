@@ -12,19 +12,19 @@ public class SessionEntity implements Persistable<String> {
     @Id
     private final String key;
     @Column("request")
-    private final String requestHash;
-    @Column("\"order\"")
-    private final UUID orderId;
+    private final String request;
+    @Column("order_uuid")
+    private final UUID order;
     @Column("created_at")
     private final Long createdAt;
 
     @Transient
     private boolean isNew = true;
 
-    public SessionEntity(String key, String requestHash, UUID orderId, Long createdAt) {
+    public SessionEntity(String key, String request, UUID order, Long createdAt) {
         this.key = key;
-        this.requestHash = requestHash;
-        this.orderId = orderId;
+        this.request = request;
+        this.order = order;
         this.createdAt = createdAt;
     }
 
@@ -43,7 +43,7 @@ public class SessionEntity implements Persistable<String> {
     }
 
     public String key() { return key; }
-    public String requestHash() { return requestHash; }
-    public UUID orderId() { return orderId; }
+    public String requestHash() { return request; }
+    public UUID orderUuid() { return order; }
     public Long createdAt() { return createdAt; }
 }

@@ -72,10 +72,8 @@ public class OrderPersistenceDelegate implements OrderPersistence {
             .skip(page.index())
             .take(page.size())
             .flatMap(o -> findById(o.uuid()));
-
         Mono<Paging.Pageable> pageable = count(category)
             .map(total -> new Paging.Pageable(page.index(), page.size(), 0, total));
-
         return new Paging.Response<>(pageable, items);
     }
 

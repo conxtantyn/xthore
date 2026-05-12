@@ -24,12 +24,12 @@ public class SessionPersistenceDelegate implements SessionPersistence {
             record.createdAt()
         );
         return datasource.save(entity)
-            .map(e -> new Session(e.key(), e.requestHash(), e.orderId(), e.createdAt()));
+            .map(e -> new Session(e.key(), e.requestHash(), e.orderUuid(), e.createdAt()));
     }
 
     @Override
     public Mono<Session> findByKey(String key) {
         return datasource.findById(key)
-            .map(e -> new Session(e.key(), e.requestHash(), e.orderId(), e.createdAt()));
+            .map(e -> new Session(e.key(), e.requestHash(), e.orderUuid(), e.createdAt()));
     }
 }

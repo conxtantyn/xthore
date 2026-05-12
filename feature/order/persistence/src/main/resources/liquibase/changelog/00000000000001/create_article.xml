@@ -12,7 +12,7 @@
             <column name="uuid" type="uuid">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="order" type="uuid">
+            <column name="order_uuid" type="uuid">
                 <constraints nullable="false"
                     foreignKeyName="fk_article_order"
                     referencedTableName="xt_order"

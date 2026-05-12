@@ -24,7 +24,15 @@ public class OrderEntity implements Persistable<UUID> {
     @Transient
     private boolean isNew = true;
 
-    public OrderEntity(UUID uuid, String state, String category, UUID customer, String siteId, Long createdAt, Long updatedAt) {
+    public OrderEntity(
+            UUID uuid,
+            String state,
+            String category,
+            UUID customer,
+            String siteId,
+            Long createdAt,
+            Long updatedAt
+    ) {
         this.uuid = uuid;
         this.state = state;
         this.category = category;

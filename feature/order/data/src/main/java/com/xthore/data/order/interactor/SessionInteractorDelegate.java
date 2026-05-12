@@ -33,7 +33,9 @@ public class SessionInteractorDelegate implements SessionInteractor {
 
     @Override
     public Mono<Session> create(String key, String request, UUID order) {
-        if (key == null) return Mono.empty();
+        if (key == null) {
+            return Mono.empty();
+        }
         return repository.save(new Session(key, request, order, System.currentTimeMillis()));
     }
 }

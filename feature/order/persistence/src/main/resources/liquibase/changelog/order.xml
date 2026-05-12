@@ -4,11 +4,14 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
-    <property name="now" value="now()" dbms="h2, mysql, postgresql"/>
     <property name="floatType" value="float" dbms="h2, mysql, postgresql"/>
     <property name="clobType" value="clob" dbms="h2, mysql, postgresql"/>
     <property name="uuidType" value="varchar(36)" dbms="h2, mysql, postgresql"/>
     <property name="datetimeType" value="datetime" dbms="h2, mysql, postgresql"/>
 
-    <includeAll path="liquibase/changelog/00000000000001" />
+    <include file="00000000000001/01_create_customer.xml" relativeToChangelogFile="true"/>
+    <include file="00000000000001/02_create_category.xml" relativeToChangelogFile="true"/>
+    <include file="00000000000001/03_create_order.xml" relativeToChangelogFile="true"/>
+    <include file="00000000000001/04_create_article.xml" relativeToChangelogFile="true"/>
+    <include file="00000000000001/05_create_session.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

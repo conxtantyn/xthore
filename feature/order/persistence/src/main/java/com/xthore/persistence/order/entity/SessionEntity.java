@@ -7,29 +7,30 @@ import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 import java.util.UUID;
 
-@Table("xt_customer")
-public class CustomerEntity implements Persistable<UUID> {
+@Table("xt_session")
+public class SessionEntity implements Persistable<String> {
     @Id
-    private final UUID uuid;
-    @Column("payment_method")
-    private final String paymentMethod;
-    private final String iban;
+    private final String key;
+    @Column("request")
+    private final String requestHash;
+    @Column("\"order\"")
+    private final UUID orderId;
     @Column("created_at")
     private final Long createdAt;
 
     @Transient
     private boolean isNew = true;
 
-    public CustomerEntity(UUID uuid, String paymentMethod, String iban, Long createdAt) {
-        this.uuid = uuid;
-        this.paymentMethod = paymentMethod;
-        this.iban = iban;
+    public SessionEntity(String key, String requestHash, UUID orderId, Long createdAt) {
+        this.key = key;
+        this.requestHash = requestHash;
+        this.orderId = orderId;
         this.createdAt = createdAt;
     }
 
     @Override
-    public UUID getId() {
-        return uuid;
+    public String getId() {
+        return key;
     }
 
     @Override
@@ -41,8 +42,8 @@ public class CustomerEntity implements Persistable<UUID> {
         this.isNew = isNew;
     }
 
-    public UUID uuid() { return uuid; }
-    public String paymentMethod() { return paymentMethod; }
-    public String iban() { return iban; }
+    public String key() { return key; }
+    public String requestHash() { return requestHash; }
+    public UUID orderId() { return orderId; }
     public Long createdAt() { return createdAt; }
 }

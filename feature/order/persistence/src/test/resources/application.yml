@@ -1,0 +1,19 @@
+spring:
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/xt_order_test_db
+    username: xthore
+    password: 78d80fdbac90341c298d1de7a293587a5e2d81cb8ddba47b6fc3166ae605dd8a
+  datasource:
+    url: jdbc:postgresql://localhost:5432/xt_order_test_db
+    username: xthore
+    password: 78d80fdbac90341c298d1de7a293587a5e2d81cb8ddba47b6fc3166ae605dd8a
+    driver-class-name: org.postgresql.Driver
+  liquibase:
+    enabled: true
+    change-log: classpath:liquibase/changelog/order.xml
+    contexts: root
+    drop-first: true
+logging:
+  level:
+    org.liquibase: DEBUG
+    org.springframework.jdbc: DEBUG

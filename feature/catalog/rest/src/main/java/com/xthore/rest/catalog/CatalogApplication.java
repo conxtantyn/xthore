@@ -3,6 +3,8 @@ package com.xthore.rest.catalog;
 import com.xthore.data.catalog.DataModule;
 import com.xthore.domain.catalog.CatalogModule;
 import com.xthore.persistence.catalog.PersistenceModule;
+import com.xthore.rest.RestModule;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
@@ -10,6 +12,7 @@ import java.util.Collections;
 
 @SpringBootApplication
 @Import({
+    RestModule.class,
     PersistenceModule.class,
     DataModule.class,
     CatalogModule.class,

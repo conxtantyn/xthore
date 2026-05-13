@@ -4,6 +4,7 @@ import com.xthore.data.order.DataModule;
 import com.xthore.domain.order.OrderModule;
 import com.xthore.persistence.order.PersistenceModule;
 import com.xthore.remote.order.RemoteModule;
+import com.xthore.rest.RestModule;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
@@ -13,6 +14,7 @@ import java.util.Collections;
 @SpringBootApplication
 @EnableFeignClients
 @Import({
+    RestModule.class,
     OrderModule.class,
     RemoteModule.class,
     PersistenceModule.class,

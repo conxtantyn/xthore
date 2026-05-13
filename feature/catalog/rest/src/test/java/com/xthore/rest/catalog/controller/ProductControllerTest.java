@@ -27,9 +27,9 @@ class ProductControllerTest {
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody()
-                .jsonPath("$.name").isEqualTo("iPhone 15");
+                .jsonPath("$.data.name").isEqualTo("iPhone 15");
     }
-
+ 
     @Test
     void shouldFindAllProducts() {
         webTestClient.get()
@@ -37,6 +37,6 @@ class ProductControllerTest {
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody()
-                .jsonPath("$.items").isArray();
+                .jsonPath("$.data.items").isArray();
     }
 }

@@ -35,21 +35,6 @@
 			<version>${reactor-kafka.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.zalando</groupId>
-			<artifactId>problem-spring-webflux</artifactId>
-			<version>${spring-security-problem.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.zalando</groupId>
-			<artifactId>jackson-datatype-problem</artifactId>
-			<version>${spring-security-problem-jackson.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springdoc</groupId>
-			<artifactId>springdoc-openapi-starter-webflux-ui</artifactId>
-			<version>${spring-doc.version}</version>
-		</dependency>
-		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-starter-webflux-api</artifactId>
 			<version>${spring-doc.version}</version>

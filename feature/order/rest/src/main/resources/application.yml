@@ -17,6 +17,9 @@ spring:
       enabled: true
   application:
     name: order
+  config:
+    import:
+      - optional:classpath:application-order-persistence.properties
   profiles:
     active: #spring.profiles.active#
       group:

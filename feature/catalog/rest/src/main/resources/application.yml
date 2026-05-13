@@ -17,6 +17,9 @@ spring:
       enabled: true
   application:
     name: catalog
+  config:
+    import:
+      - optional:classpath:application-catalog-persistence.properties
   profiles:
     active: #spring.profiles.active#
       group:

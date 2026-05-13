@@ -19,17 +19,6 @@ window.onload = function () {
       SwaggerUIBundle.plugins.DownloadUrl
     ],
     layout: "StandaloneLayout",
-    requestInterceptor: (req) => {
-      const service = new URLSearchParams(window.location.search).get('q');
-      if (service && !req.url.includes(`/${service}/`)) {
-        // If the URL contains a container ID or different host, rewrite it to use the Gateway
-        const baseUrl = `${window.location.protocol}//${window.location.host}`;
-        if (req.url.includes(':8090')) {
-          req.url = req.url.replace(/^http:\/\/.*:\d+/, `${baseUrl}/${service}`);
-        }
-      }
-      return req;
-    },
     onComplete: function () {
       const baseUrl = `${window.location.protocol}//${window.location.host}`;
       const currentSpec = window.ui.getSystem().specSelectors.specJson();

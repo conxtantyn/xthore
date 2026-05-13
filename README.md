@@ -27,10 +27,11 @@ This project implements a microservices-based system for managing customer order
 
 ### Reachable Endpoints
 - **Order Service**: `http://localhost:8090/order` (Mapped via Gateway/Eureka)
-- **Catalog Service**: `http://localhost:8081`
 - **Service Registry (Eureka)**: [http://localhost:8761/](http://localhost:8761/)
 - **Swagger Documentation**: [http://localhost:8090/swagger-ui/index.html](http://localhost:8090/swagger-ui/index.html)
-  - Access specific services using the `q` query parameter, e.g., `?q=catalog` or `?q=order`.
+  - Access specific services using the `q` query parameter, e.g:
+    - [Catalog service](http://localhost:8090/swagger-ui/index.html?q=catalog)
+    - [Order service](http://localhost:8090/swagger-ui/index.html?q=order)
 
 ---
 

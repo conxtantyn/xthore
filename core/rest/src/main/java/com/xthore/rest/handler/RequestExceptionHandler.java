@@ -12,7 +12,6 @@ import java.util.Map;
 
 @ControllerAdvice
 public class RequestExceptionHandler {
-
     @ExceptionHandler(BusinessException.class)
     public Mono<ResponseEntity<Map<String, Object>>> handleBusinessException(BusinessException error,
             ServerWebExchange exchange) {

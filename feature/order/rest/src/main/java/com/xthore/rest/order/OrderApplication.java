@@ -14,11 +14,11 @@ import java.util.Collections;
 @SpringBootApplication
 @EnableFeignClients
 @Import({
-    RestModule.class,
-    OrderModule.class,
-    RemoteModule.class,
-    PersistenceModule.class,
-    DataModule.class
+        RestModule.class,
+        OrderModule.class,
+        RemoteModule.class,
+        PersistenceModule.class,
+        DataModule.class
 })
 public class OrderApplication {
     private static final String SPRING_PROFILE_DEVELOPMENT = "dev";
@@ -28,8 +28,7 @@ public class OrderApplication {
         SpringApplication application = new SpringApplication(OrderApplication.class);
         application.setDefaultProperties(Collections.singletonMap(
                 SPRING_PROFILE_DEFAULT,
-                SPRING_PROFILE_DEVELOPMENT
-        ));
+                SPRING_PROFILE_DEVELOPMENT));
         application.run(args);
     }
 }

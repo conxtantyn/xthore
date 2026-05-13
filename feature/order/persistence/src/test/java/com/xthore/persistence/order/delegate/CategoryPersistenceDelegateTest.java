@@ -1,6 +1,5 @@
 package com.xthore.persistence.order.delegate;
 
-import com.xthore.persistence.order.PersistenceModule;
 import com.xthore.persistence.order.datasource.ArticleDatasource;
 import com.xthore.persistence.order.datasource.CategoryDatasource;
 import com.xthore.persistence.order.datasource.OrderDatasource;
@@ -9,8 +8,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Import;
-import org.springframework.test.context.ActiveProfiles;
 import reactor.test.StepVerifier;
 
 import static org.assertj.core.api.Assertions.assertThat;

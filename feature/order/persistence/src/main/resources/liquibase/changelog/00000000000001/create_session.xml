@@ -6,7 +6,7 @@
                         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
     <changeSet id="00000000000001-1" author="kevin-constantine">
         <createTable tableName="xt_session">
-            <column name="key" type="varchar(255)">
+            <column name="session_key" type="varchar(255)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="request" type="varchar(255)">

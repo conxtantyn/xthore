@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import reactor.core.publisher.Mono;
 
-import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/product")
@@ -33,9 +33,12 @@ public class ProductController {
 
     @ResponseBody
     @GetMapping("/{uuid}")
-    public Mono<Product> find(@PathVariable String uuid) {
-        return retrieveProductUsecase.execute(uuid)
-                .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found")));
+    public Mono<Product> find(@PathVariable UUID uuid) {
+        return retrieveProductUsecase.execute(uuid.toString())
+                .switchIfEmpty(Mono.error(new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "product_not_found"
+                )));
     }
 
     @ResponseBody
@@ -47,7 +50,6 @@ public class ProductController {
     ) {
         Paging.Response<Product> response = listProductsUsecase.execute(new ListProductsUsecase
                 .Args(offering, new Paging.Page(page, size)));
-        
         return Mono.zip(response.pageable(), response.items().collectList())
                 .map(tuple -> Map.of(
                         "pageable", tuple.getT1(),

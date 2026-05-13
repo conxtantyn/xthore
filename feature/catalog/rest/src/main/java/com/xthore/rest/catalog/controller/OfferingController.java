@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.UUID;
+
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -36,7 +38,7 @@ public class OfferingController {
 
     @ResponseBody
     @GetMapping("/{product}")
-    Mono<Offering> findByProduct(@PathVariable String product) {
-        return retrieveOfferingByProductUsecase.execute(product);
+    Mono<Offering> findByProduct(@PathVariable UUID product) {
+        return retrieveOfferingByProductUsecase.execute(product.toString());
     }
 }

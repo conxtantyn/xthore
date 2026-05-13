@@ -10,7 +10,8 @@ import java.util.UUID;
 @Table("xt_session")
 public class SessionEntity implements Persistable<String> {
     @Id
-    private final String key;
+    @Column("session_key")
+    private final String sessionKey;
     @Column("request")
     private final String request;
     @Column("order_uuid")
@@ -21,8 +22,8 @@ public class SessionEntity implements Persistable<String> {
     @Transient
     private boolean isNew = true;
 
-    public SessionEntity(String key, String request, UUID order, Long createdAt) {
-        this.key = key;
+    public SessionEntity(String sessionKey, String request, UUID order, Long createdAt) {
+        this.sessionKey = sessionKey;
         this.request = request;
         this.order = order;
         this.createdAt = createdAt;
@@ -30,7 +31,7 @@ public class SessionEntity implements Persistable<String> {
 
     @Override
     public String getId() {
-        return key;
+        return sessionKey;
     }
 
     @Override
@@ -42,7 +43,7 @@ public class SessionEntity implements Persistable<String> {
         this.isNew = isNew;
     }
 
-    public String key() { return key; }
+    public String sessionKey() { return sessionKey; }
     public String requestHash() { return request; }
     public UUID orderUuid() { return order; }
     public Long createdAt() { return createdAt; }

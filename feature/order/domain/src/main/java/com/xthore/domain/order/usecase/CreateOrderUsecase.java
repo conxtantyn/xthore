@@ -24,8 +24,8 @@ public class CreateOrderUsecase implements MonoWithArgsUsecase<CreateOrderUsecas
     @Override
     public Mono<Order> execute(Args args) {
         return interactor.check(args.session(), args.request())
-            .flatMap(record -> orderRepository.findById(record.order()))
-            .switchIfEmpty(Mono.defer(() -> createNewOrder(args)));
+                .flatMap(record -> orderRepository.findById(record.order()))
+                .switchIfEmpty(Mono.defer(() -> createNewOrder(args)));
     }
 
     private Mono<Order> createNewOrder(Args args) {
@@ -33,21 +33,18 @@ public class CreateOrderUsecase implements MonoWithArgsUsecase<CreateOrderUsecas
             return Mono.error(new ValidationException());
         }
         Order order = new Order(
-            UUID.randomUUID(),
-            Order.State.DRAFT,
-            args.category(),
-            args.customer(),
-            args.site(),
-            args.articles(),
-            args.paymentMethod(),
-            System.currentTimeMillis(),
-            System.currentTimeMillis()
-        );
+                UUID.randomUUID(),
+                Order.State.DRAFT,
+                args.category(),
+                args.customer(),
+                args.site(),
+                args.articles(),
+                args.paymentMethod(),
+                System.currentTimeMillis(),
+                System.currentTimeMillis());
         return orderRepository.save(order)
-            .flatMap(savedOrder ->
-                    interactor.create(args.session(), args.request(), savedOrder.id())
-                    .thenReturn(savedOrder)
-            );
+                .flatMap(savedOrder -> interactor.create(args.session(), args.request(), savedOrder.id())
+                        .thenReturn(savedOrder));
     }
 
     public record Args(
@@ -57,6 +54,6 @@ public class CreateOrderUsecase implements MonoWithArgsUsecase<CreateOrderUsecas
             List<Article> articles,
             PaymentMethod paymentMethod,
             String session,
-            String request
-    ) {}
+            String request) {
+    }
 }

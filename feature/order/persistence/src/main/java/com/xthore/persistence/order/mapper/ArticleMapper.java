@@ -10,7 +10,7 @@ public class ArticleMapper {
         return new ArticleEntity(
                 UUID.randomUUID(),
                 order,
-                article.offering(),
+                article.uuid(),
                 article.quantity()
         );
     }

@@ -1,5 +1,7 @@
 package com.xthore.data.order.api;
 
+import reactor.core.publisher.Mono;
+
 public interface OfferingApi {
-    Boolean isAvailable(String product);
+    Mono<Boolean> isAvailable(String product);
 }

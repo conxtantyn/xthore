@@ -1,4 +1,9 @@
 package com.xthore.domain.order.exception;
-
-public class OrderNotFoundException extends RuntimeException {
+ 
+import com.xthore.common.exception.BusinessException;
+ 
+public class OrderNotFoundException extends BusinessException {
+    public OrderNotFoundException() {
+        super(404, "Order not found");
+    }
 }

@@ -32,12 +32,21 @@ public class OrderPersistenceDelegate implements OrderPersistence {
     @Override
     public Mono<Order> save(Order order) {
         OrderEntity entity = OrderMapper.mapFromDomain(order);
-        return orderDatasource.save(entity)
-            .flatMap(savedOrder -> {
-                Flux<ArticleEntity> articles = Flux.fromIterable(order.articles())
-                    .map(item -> ArticleMapper.mapToDomain(savedOrder.uuid(), item));
-                return articleDatasource.saveAll(articles).collectList()
-                    .thenReturn(savedOrder);
+        return orderDatasource.existsById(order.id())
+            .flatMap(exists -> {
+                entity.setNew(!exists);
+                return orderDatasource.save(entity)
+                    .flatMap(savedOrder -> 
+                        articleDatasource.deleteByOrderUuid(savedOrder.uuid())
+                            .thenMany(Flux.fromIterable(order.articles())
+                                .map(item -> ArticleMapper.mapToDomain(savedOrder.uuid(), item)))
+                            .flatMap(article -> {
+                                article.setNew(true);
+                                return articleDatasource.save(article);
+                            })
+                            .collectList()
+                            .thenReturn(savedOrder)
+                    );
             }).flatMap(savedOrder -> findById(savedOrder.uuid()));
     }
 

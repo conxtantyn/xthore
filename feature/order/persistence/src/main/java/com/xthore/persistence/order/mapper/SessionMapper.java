@@ -15,7 +15,7 @@ public class SessionMapper {
 
     public static Session mapToDomain(SessionEntity session) {
         return new Session(
-            session.key(),
+            session.sessionKey(),
             session.requestHash(),
             session.orderUuid(),
             session.createdAt()

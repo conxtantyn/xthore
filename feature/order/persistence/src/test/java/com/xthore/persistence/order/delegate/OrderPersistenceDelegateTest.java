@@ -89,7 +89,7 @@ public class OrderPersistenceDelegateTest {
                 assertThat(saved.id()).isEqualTo(orderId);
                 assertThat(saved.state()).isEqualTo(Order.State.DRAFT);
                 assertThat(saved.articles()).hasSize(1);
-                assertThat(saved.articles().get(0).offering()).isEqualTo("pro-1");
+                assertThat(saved.articles().get(0).uuid()).isEqualTo("pro-1");
             }).verifyComplete();
         StepVerifier.create(delegate.findById(orderId))
             .assertNext(retrieved -> {

@@ -1,6 +1,6 @@
 package com.xthore.domain.order.model;
 
 public record Article(
-    String offering,
+    String uuid,
     Integer quantity
 ) {}

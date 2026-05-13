@@ -5,8 +5,10 @@ import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;
 import java.util.UUID;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @Repository
 public interface ArticleDatasource extends ReactiveCrudRepository<ArticleEntity, UUID> {
     Flux<ArticleEntity> findByOrderUuid(UUID orderUuid);
+    Mono<Void> deleteByOrderUuid(UUID orderUuid);
 }
